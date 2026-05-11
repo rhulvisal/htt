@@ -17,7 +17,7 @@ TOR_PID=$!
 
 # Wait for Tor to bootstrap (check SOCKS port first)
 echo "[INFO] Waiting for Tor SOCKS port..."
-for i in {1..30}; do
+for i in $(seq 1 30); do
     if curl --silent --socks5-hostname 127.0.0.1:9050 https://api.ipify.org?format=json > /dev/null 2>&1; then
         echo "[INFO] Tor SOCKS is ready!"
         break
@@ -27,7 +27,7 @@ done
 
 # Wait for control cookie file
 echo "[INFO] Waiting for Tor control cookie..."
-for i in {1..30}; do
+for i in $(seq 1 30); do
     if [ -f /var/lib/tor/control_auth_cookie ]; then
         chmod 644 /var/lib/tor/control_auth_cookie
         echo "[INFO] Tor control cookie ready!"
