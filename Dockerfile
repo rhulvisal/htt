@@ -25,4 +25,4 @@ RUN chmod +x start.sh
 EXPOSE 8000
 
 # Start both Tor, rotator, and FastAPI
-ENTRYPOINT ["./start.sh"]
+CMD ["/bin/bash", "./start.sh"]
